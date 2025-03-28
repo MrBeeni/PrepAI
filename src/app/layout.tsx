@@ -10,8 +10,9 @@ const monaSans = Mona_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "PrepWise",
-  description: "An AI-powered platform for preparing for mock interviews",
+  title: "PrepAI - Smart Interview Preparation with AI",
+  description:
+    "PrepAI helps you prepare for job interviews with AI-generated questions and personalized sessions. Practice technical, behavioral, or mixed interviews and boost your confidence!",
 };
 
 export default function RootLayout({
