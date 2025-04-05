@@ -168,7 +168,7 @@ const Agent = ({
         <div className="card-border">
           <div className="card-content">
             <Image
-              src="/user-avatar.png"
+              src={`https://avatar.iran.liara.run/public/boy?username=${userName}`}
               alt="profile-image"
               width={539}
               height={539}
