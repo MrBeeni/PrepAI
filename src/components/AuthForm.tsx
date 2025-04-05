@@ -8,6 +8,7 @@ import { auth } from "@/firebase/client";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
 
 import {
   createUserWithEmailAndPassword,
@@ -19,6 +20,7 @@ import { Button } from "@/components/ui/button";
 
 import FormField from "./FormField";
 import { signIn, signUp } from "@/actions/auth.action";
+import { useState } from "react";
 
 const authFormSchema = (type: FormType) => {
   return z.object({
@@ -41,7 +43,11 @@ const AuthForm = ({ type }: { type: FormType }) => {
     },
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    if (isLoading) return;
+    setIsLoading(true);
     try {
       if (type === "sign-up") {
         const { name, email, password } = data;
@@ -92,6 +98,8 @@ const AuthForm = ({ type }: { type: FormType }) => {
     } catch (error) {
       console.log(error);
       toast.error(`There was an error: ${error}`);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -140,6 +148,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
 
             <Button className="btn" type="submit">
               {isSignIn ? "Sign In" : "Create an Account"}
+              {isLoading && <Loader2 className="animate-spin ml-1 size-5" />}
             </Button>
           </form>
         </Form>

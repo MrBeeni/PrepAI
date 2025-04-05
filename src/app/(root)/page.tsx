@@ -56,6 +56,7 @@ async function Home() {
                 role={interview.role}
                 type={interview.type}
                 coverImage={interview.coverImage}
+                totalQuestions={interview.questions.length}
                 techstack={interview.techstack}
                 createdAt={interview.createdAt}
               />
@@ -79,6 +80,7 @@ async function Home() {
                 role={interview.role}
                 type={interview.type}
                 coverImage={interview.coverImage}
+                totalQuestions={interview.questions.length}
                 techstack={interview.techstack}
                 createdAt={interview.createdAt}
               />

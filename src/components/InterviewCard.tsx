@@ -14,6 +14,7 @@ const InterviewCard = async ({
   role,
   type,
   techstack,
+  totalQuestions,
   createdAt,
   coverImage,
 }: InterviewCardProps) => {
@@ -87,6 +88,11 @@ const InterviewCard = async ({
             {feedback?.finalAssessment ||
               "You haven't taken this interview yet. Take it now to improve your skills."}
           </p>
+          {/* Total question  */}
+
+          <div className="flex flex-row gap-2 mt-1">
+            <p> Total Questions : {totalQuestions} </p>
+          </div>
         </div>
 
         <div className="flex flex-row justify-between">

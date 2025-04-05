@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { interviewer } from "@/constants";
 import { vapi } from "@/lib/vapi.sdk";
+import { createFeedback } from "@/actions/general.action";
 // import { createFeedback } from "@/lib/actions/general.action";
 
 enum CallStatus {
@@ -90,19 +91,19 @@ const Agent = ({
     const handleGenerateFeedback = async (messages: SavedMessage[]) => {
       console.log("handleGenerateFeedback");
 
-      // const { success, feedbackId: id } = await createFeedback({
-      //   interviewId: interviewId!,
-      //   userId: userId!,
-      //   transcript: messages,
-      //   feedbackId,
-      // });
+      const { success, feedbackId: id } = await createFeedback({
+        interviewId: interviewId!,
+        userId: userId!,
+        transcript: messages,
+        feedbackId,
+      });
 
-      // if (success && id) {
-      //   router.push(`/interview/${interviewId}/feedback`);
-      // } else {
-      //   console.log("Error saving feedback");
-      //   router.push("/");
-      // }
+      if (success && id) {
+        router.push(`/interview/${interviewId}/feedback`);
+      } else {
+        console.log("Error saving feedback");
+        router.push("/");
+      }
     };
 
     if (callStatus === CallStatus.FINISHED) {
@@ -118,7 +119,6 @@ const Agent = ({
     setCallStatus(CallStatus.CONNECTING);
 
     if (type === "generate") {
-      console.log("Generating questions", userId);
       await vapi.start(process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID!, {
         variableValues: {
           username: userName,

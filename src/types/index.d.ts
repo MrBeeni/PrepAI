@@ -47,6 +47,7 @@ interface InterviewCardProps {
   techstack: string[];
   createdAt?: string;
   coverImage: string;
+  totalQuestions: number;
 }
 
 interface AgentProps {

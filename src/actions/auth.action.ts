@@ -41,6 +41,7 @@ export async function signUp(params: SignUpParams) {
     await db.collection("users").doc(uid).set({
       name,
       email,
+      // todo
       // profileURL,
       // resumeURL,
     });
@@ -92,7 +93,6 @@ export async function signIn(params: SignInParams) {
 // Sign out user by clearing the session cookie
 export async function signOut() {
   const cookieStore = await cookies();
-
   cookieStore.delete("session");
 }
 
